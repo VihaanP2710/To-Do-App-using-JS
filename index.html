@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do App</title>
+</head>
+<body>
+    <h3>Add your To-Do list items here</h3>
+    <form id="todo">
+        <input type="text" id="textInput">
+        <button> Add </button>
+    </form>
+
+    <h3>To-Do list</h3>
+    <ul id="theList"></ul>
+
+    <script>
+        var todo = document.getElementById("todo");
+        var textInput = document.getElementById("textInput");
+        var theList = document.getElementById("theList");
+
+        function deleteElement(ElementToDelete) {
+            ElementToDelete.parentElement.remove();
+        }
+
+        function createItem(inputItems) {
+            var items = `<li>${inputItems}
+                <button onclick="deleteElement(this)">Delete</button> 
+            </li>`;
+            
+            theList.insertAdjacentElement("beforeend", items);
+            textInput.value = "";
+            textInput.focus();
+
+        }
+
+        todo("submit", function(event){
+            event.preventDefault();
+            createItem(textInput.value);
+        });
+    </script>
+</body>
+</html>
