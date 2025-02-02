@@ -24,21 +24,23 @@
             ElementToDelete.parentElement.remove();
         }
 
+        todo.addEventListener("submit", function(event){
+            event.preventDefault();
+            createItem(textInput.value);
+        });
+
         function createItem(inputItems) {
             var items = `<li>${inputItems}
                 <button onclick="deleteElement(this)">Delete</button> 
             </li>`;
             
-            theList.insertAdjacentElement("beforeend", items);
+            theList.insertAdjacentHTML("beforeend", items);
             textInput.value = "";
             textInput.focus();
 
         }
 
-        todo("submit", function(event){
-            event.preventDefault();
-            createItem(textInput.value);
-        });
+        
     </script>
 </body>
 </html>
